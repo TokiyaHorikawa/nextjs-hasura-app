@@ -35,3 +35,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# codegen
+/graphql/node_modules
+/graphql/graphql.ts
