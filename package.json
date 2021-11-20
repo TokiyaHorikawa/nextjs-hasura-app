@@ -5,14 +5,25 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "ngrok": "ngrok http 3000",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "graphql": "^16.0.1",
+    "graphql-request": "^3.6.1",
     "next": "12.0.4",
+    "ngrok": "^4.2.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-query": "^3.33.2"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "2.3.0",
+    "@graphql-codegen/introspection": "2.1.0",
+    "@graphql-codegen/typescript": "2.4.1",
+    "@graphql-codegen/typescript-operations": "2.2.1",
+    "@graphql-codegen/typescript-react-query": "^3.2.1",
     "@types/node": "16.11.9",
     "@types/react": "17.0.35",
     "eslint": "7.32.0",
