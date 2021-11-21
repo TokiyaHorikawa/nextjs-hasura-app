@@ -1,0 +1,8 @@
+query todos {
+  todos(limit: 10) {
+    id
+    is_completed
+    is_public
+    title
+  }
+}

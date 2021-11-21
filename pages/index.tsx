@@ -4,10 +4,12 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { graphqlClient } from "../graphql/client";
 
-import { useUsersQuery } from "../graphql/graphql";
+import { useUsersQuery, useTodosQuery } from "../graphql/graphql";
 
 const Home: NextPage = () => {
   const { data, isLoading } = useUsersQuery(graphqlClient);
+  const { data: dataTodos, isLoading: isLoadingTodos } =
+    useTodosQuery(graphqlClient);
   return (
     <div className={styles.container}>
       <Head>
@@ -20,9 +22,22 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-        {data?.users.map((user) => (
-          <p key={user.id}>{user.name}</p>
-        ))}
+
+        <div>
+          <div>
+            <p>ユーザー一覧</p>
+            {data?.users.map((user) => (
+              <span key={user.id}>{user.name} / </span>
+            ))}
+          </div>
+
+          <div>
+            <p>TODO</p>
+            {dataTodos?.todos.map((todo) => (
+              <span key={todo.id}>{todo.title} / </span>
+            ))}
+          </div>
+        </div>
       </main>
 
       <footer className={styles.footer}>
