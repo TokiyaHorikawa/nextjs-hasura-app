@@ -1,0 +1,7 @@
+query user($id: Int!) {
+  user: users_by_pk(id: $id) {
+    id
+    name
+    last_seen
+  }
+}

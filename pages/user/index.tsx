@@ -13,7 +13,14 @@ const UserPage = () => {
       <h1 className={styles.title}>{title}</h1>
       <ul>
         {dataUsers &&
-          dataUsers.users.map((user) => <li key={user.id}>{user.name} </li>)}
+          dataUsers.users.map((user) => (
+            <li key={user.id}>
+              {user.name}
+              <Link href={`/user/${user.id}`}>
+                <a className={styles.link}>→ 詳細へ</a>
+              </Link>
+            </li>
+          ))}
       </ul>
       <div>
         <Link href="/">
