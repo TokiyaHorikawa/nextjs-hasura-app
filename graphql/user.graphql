@@ -3,5 +3,13 @@ query user($id: Int!) {
     id
     name
     last_seen
+    todos {
+      id
+      is_completed
+      is_public
+      title
+      created_at
+      user_id
+    }
   }
 }
