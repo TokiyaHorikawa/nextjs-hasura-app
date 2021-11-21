@@ -7,9 +7,9 @@ import { graphqlClient } from "../graphql/client";
 import { useUsersQuery, useTodosQuery } from "../graphql/graphql";
 
 const Home: NextPage = () => {
-  const { data, isLoading } = useUsersQuery(graphqlClient);
-  const { data: dataTodos, isLoading: isLoadingTodos } =
-    useTodosQuery(graphqlClient);
+  const { data: dataUsers } = useUsersQuery(graphqlClient);
+  const { data: dataTodos } = useTodosQuery(graphqlClient);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -26,7 +26,7 @@ const Home: NextPage = () => {
         <div>
           <div>
             <p>ユーザー一覧</p>
-            {data?.users.map((user) => (
+            {dataUsers?.users.map((user) => (
               <span key={user.id}>{user.name} / </span>
             ))}
           </div>
