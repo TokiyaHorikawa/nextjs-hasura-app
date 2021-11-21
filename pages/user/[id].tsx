@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import styles from "../../styles/Home.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -9,18 +10,25 @@ const title = "ユーザー詳細ページ";
 const UserShowPage = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { data: dataUser } = useUserQuery(graphqlClient, { id: Number(id) });
+  const variables = { id: Number(id) };
+  const { data: dataUser } = useUserQuery(graphqlClient, variables);
+
+  const user = useMemo(() => dataUser?.user, [dataUser]);
+  const todos = useMemo(() => dataUser?.user?.todos, [dataUser]);
 
   return (
     <Layout title={title}>
       <h1 className={styles.title}>{title}</h1>
       <div>
-        {dataUser && (
-          <ul>
-            <li>ID: {dataUser.user?.id}</li>
-            <li>名前: {dataUser.user?.name}</li>
-          </ul>
-        )}
+        {user?.name}（ID: {user?.id}）
+      </div>
+      <div>
+        <h3>タスク一覧</h3>
+        <ul>
+          {todos
+            ? todos.map((todo) => <li key={todo.id}>{todo.title}</li>)
+            : "TODOなし"}
+        </ul>
       </div>
       <div>
         <Link href="/user">
