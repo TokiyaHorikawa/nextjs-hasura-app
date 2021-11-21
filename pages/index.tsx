@@ -2,12 +2,11 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import Link from "next/link";
 import { graphqlClient } from "../graphql/client";
-
-import { useUsersQuery, useTodosQuery } from "../graphql/graphql";
+import { useTodosQuery } from "../graphql/graphql";
 
 const Home: NextPage = () => {
-  const { data: dataUsers } = useUsersQuery(graphqlClient);
   const { data: dataTodos } = useTodosQuery(graphqlClient);
 
   return (
@@ -24,13 +23,9 @@ const Home: NextPage = () => {
         </h1>
 
         <div>
-          <div>
-            <p>ユーザー一覧</p>
-            {dataUsers?.users.map((user) => (
-              <span key={user.id}>{user.name} / </span>
-            ))}
-          </div>
-
+          <Link href="/user">
+            <a className={styles.link}>ユーザー一覧</a>
+          </Link>
           <div>
             <p>TODO</p>
             {dataTodos?.todos.map((todo) => (

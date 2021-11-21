@@ -114,3 +114,8 @@
     flex-direction: column;
   }
 }
+
+.link {
+  color: #0070f3;
+  text-decoration: none;
+}
