@@ -18,15 +18,13 @@ const UserPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>{title}</h1>
-        <div>
+        <ul>
           {dataUsers &&
-            dataUsers.users.map((user) => (
-              <span key={user.id}>{user.name} / </span>
-            ))}
-        </div>
+            dataUsers.users.map((user) => <li key={user.id}>{user.name} </li>)}
+        </ul>
         <div>
           <Link href="/">
-            <a className={styles.link}>戻る</a>
+            <a className={styles.link}>ホームに戻る</a>
           </Link>
         </div>
       </main>
