@@ -18,8 +18,11 @@ const UserShowPage = () => {
   const router = useRouter();
   const { id } = router.query;
   const variables = { id: Number(id) };
-  const { data: dataUser } = useUserQuery(graphqlClient, variables);
-  const { mutate: addTodo } = useInsertTodosOneMutation(graphqlClient);
+  const { data: dataUser, refetch } = useUserQuery(graphqlClient, variables);
+  const { mutate: addTodo } = useInsertTodosOneMutation(graphqlClient, {
+    // FIXME: 無駄なレンダリングの原因になってそう
+    onSuccess: () => refetch(),
+  });
 
   const [user, todos] = useMemo(
     () => [dataUser?.user, dataUser?.user?.todos],
@@ -30,7 +33,6 @@ const UserShowPage = () => {
 
   const onSubmit = async ({ title }: Form) => {
     if (!user) return;
-    // TODO: 送信後にrefectchする
     addTodo({ input: { title, user_id: user.id } });
   };
 
