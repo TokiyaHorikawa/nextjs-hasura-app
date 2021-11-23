@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import {
   useUserQuery,
-  useInsertTodosOneMutation,
+  useInsertTodosByIdMutation,
   useDeleteTodosByIdMutation,
   Todos_Insert_Input,
 } from "../../graphql/graphql";
@@ -20,7 +20,7 @@ const UserShowPage = () => {
   const { id } = router.query;
   const variables = { id: Number(id) };
   const { data: dataUser, refetch } = useUserQuery(graphqlClient, variables);
-  const { mutate: addTodo } = useInsertTodosOneMutation(graphqlClient, {
+  const { mutate: addTodo } = useInsertTodosByIdMutation(graphqlClient, {
     // FIXME: 無駄なレンダリングの原因になってそう
     onSuccess: () => refetch(),
   });
