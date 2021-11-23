@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import {
   useUserQuery,
   useInsertTodosOneMutation,
+  useDeleteTodosByIdMutation,
   Todos_Insert_Input,
 } from "../../graphql/graphql";
 import { useForm } from "react-hook-form";
@@ -21,6 +22,9 @@ const UserShowPage = () => {
   const { data: dataUser, refetch } = useUserQuery(graphqlClient, variables);
   const { mutate: addTodo } = useInsertTodosOneMutation(graphqlClient, {
     // FIXME: 無駄なレンダリングの原因になってそう
+    onSuccess: () => refetch(),
+  });
+  const { mutate: deleteTodo } = useDeleteTodosByIdMutation(graphqlClient, {
     onSuccess: () => refetch(),
   });
 
@@ -46,7 +50,12 @@ const UserShowPage = () => {
         <h3>タスク一覧</h3>
         <ul>
           {todos
-            ? todos.map((todo) => <li key={todo.id}>{todo.title}</li>)
+            ? todos.map((todo) => (
+                <li key={todo.id}>
+                  {todo.title}
+                  <button onClick={() => deleteTodo({ id: todo.id })}>×</button>
+                </li>
+              ))
             : "TODOなし"}
         </ul>
         <form onSubmit={handleSubmit(onSubmit)}>
