@@ -21,8 +21,10 @@ const UserShowPage = () => {
   const { data: dataUser } = useUserQuery(graphqlClient, variables);
   const { mutate: addTodo } = useInsertTodosOneMutation(graphqlClient);
 
-  const user = useMemo(() => dataUser?.user, [dataUser]);
-  const todos = useMemo(() => dataUser?.user?.todos, [dataUser]);
+  const [user, todos] = useMemo(
+    () => [dataUser?.user, dataUser?.user?.todos],
+    [dataUser]
+  );
 
   const { register, handleSubmit } = useForm<Form>();
 
