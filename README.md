@@ -33,7 +33,7 @@ docker-compose up -d
 ```
 
 hasura のコンソール画面  
-`localhost:8080/console`
+http://localhost:8080/console
 
 ## Learn More
 
