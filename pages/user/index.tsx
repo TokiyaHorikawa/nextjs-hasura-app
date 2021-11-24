@@ -1,10 +1,10 @@
-import styles from "../../styles/Home.module.css";
-import Link from "next/link";
-import { useUsersQuery } from "../../graphql/graphql";
-import { graphqlClient } from "../../graphql/client";
-import Layout from "../../components/Layout";
+import styles from '../../styles/Home.module.css';
+import Link from 'next/link';
+import { useUsersQuery } from '../../graphql/graphql';
+import { graphqlClient } from '../../graphql/client';
+import Layout from '../../components/Layout';
 
-const title = "ユーザー一覧ページ";
+const title = 'ユーザー一覧ページ';
 const UserPage = () => {
   const { data: dataUsers } = useUsersQuery(graphqlClient);
 
@@ -23,7 +23,7 @@ const UserPage = () => {
           ))}
       </ul>
       <div>
-        <Link href="/">
+        <Link href='/'>
           <a className={styles.link}>ホームに戻る</a>
         </Link>
       </div>

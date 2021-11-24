@@ -6,6 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css,scss}'",
     "ngrok": "ngrok http 3000",
     "codegen": "graphql-codegen --config codegen.yml"
   },
@@ -29,6 +30,8 @@
     "@types/react": "17.0.35",
     "eslint": "7.32.0",
     "eslint-config-next": "12.0.4",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.4.1",
     "typescript": "4.5.2"
   }
 }
