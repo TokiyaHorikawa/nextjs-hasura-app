@@ -1,18 +1,20 @@
 import { useMemo } from 'react';
-import styles from '../../styles/Home.module.css';
 import Link from 'next/link';
+import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import { Text } from '@chakra-ui/react';
+import { Heading } from '@chakra-ui/react';
+
+import styles from '../../styles/Home.module.css';
 import {
   useUserQuery,
   useInsertTodosByIdMutation,
   useDeleteTodosByIdMutation,
   Todos_Insert_Input,
 } from '../../graphql/graphql';
-import { useForm } from 'react-hook-form';
 import { graphqlClient } from '../../graphql/client';
 import Layout from '../../components/Layout';
 import { DeleteIcon } from '../../components/DeleteIcon';
-import { Text } from '@chakra-ui/react';
 
 type Form = Pick<Todos_Insert_Input, 'title'>;
 
@@ -49,7 +51,9 @@ const UserShowPage = () => {
         {user?.name}（ID: {user?.id}）
       </div>
       <div>
-        <h3>タスク一覧</h3>
+        <Heading as='h4' size='md'>
+          タスク一覧
+        </Heading>
         {todos
           ? todos.map((todo) => (
               <Text key={todo.id}>
