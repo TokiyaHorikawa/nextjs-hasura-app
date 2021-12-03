@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form';
 import { graphqlClient } from '../../graphql/client';
 import Layout from '../../components/Layout';
 import { DeleteIcon } from '../../components/DeleteIcon';
+import { Text } from '@chakra-ui/react';
 
 type Form = Pick<Todos_Insert_Input, 'title'>;
 
@@ -49,16 +50,14 @@ const UserShowPage = () => {
       </div>
       <div>
         <h3>タスク一覧</h3>
-        <ul>
-          {todos
-            ? todos.map((todo) => (
-                <li key={todo.id}>
-                  {todo.title}
-                  <DeleteIcon onClick={() => deleteTodo({ id: todo.id })} />
-                </li>
-              ))
-            : 'TODOなし'}
-        </ul>
+        {todos
+          ? todos.map((todo) => (
+              <Text key={todo.id}>
+                {todo.title}
+                <DeleteIcon onClick={() => deleteTodo({ id: todo.id })} />
+              </Text>
+            ))
+          : 'TODOなし'}
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             {...register('title')}

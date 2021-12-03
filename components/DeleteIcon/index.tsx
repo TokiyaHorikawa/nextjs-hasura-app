@@ -3,5 +3,11 @@ type Props = {
   onClick: () => void;
 };
 export const DeleteIcon = ({ onClick }: Props) => (
-  <Icon w={4} h={4} color='red.500' onClick={onClick} />
+  <Icon
+    w={4}
+    h={4}
+    color='red.500'
+    onClick={onClick}
+    style={{ cursor: 'pointer' }}
+  />
 );
