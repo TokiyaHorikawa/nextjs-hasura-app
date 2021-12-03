@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { Text } from '@chakra-ui/react';
 import { Heading } from '@chakra-ui/react';
+import { Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react';
 
 import styles from '../../styles/Home.module.css';
 import {
@@ -63,12 +64,19 @@ const UserShowPage = () => {
             ))
           : 'TODOなし'}
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input
-            {...register('title')}
-            type='text'
-            placeholder='タスクを入力してください'
-          />
-          <input type='submit' />
+          <InputGroup size='md'>
+            <Input
+              {...register('title')}
+              pr='4.5rem'
+              type='text'
+              placeholder='タスクを入力してください'
+            />
+            <InputRightElement width='4.5rem'>
+              <Button type='submit' h='1.75rem' size='xs'>
+                送信
+              </Button>
+            </InputRightElement>
+          </InputGroup>
         </form>
       </div>
       <div>
