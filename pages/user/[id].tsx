@@ -11,6 +11,7 @@ import {
 import { useForm } from 'react-hook-form';
 import { graphqlClient } from '../../graphql/client';
 import Layout from '../../components/Layout';
+import { Button } from '../../components/Button';
 
 type Form = Pick<Todos_Insert_Input, 'title'>;
 
@@ -53,7 +54,7 @@ const UserShowPage = () => {
             ? todos.map((todo) => (
                 <li key={todo.id}>
                   {todo.title}
-                  <button onClick={() => deleteTodo({ id: todo.id })}>×</button>
+                  <Button onClick={() => deleteTodo({ id: todo.id })}>×</Button>
                 </li>
               ))
             : 'TODOなし'}
