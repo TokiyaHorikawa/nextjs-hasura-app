@@ -6,13 +6,13 @@ import { Heading } from '@chakra-ui/react';
 import { Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react';
 
 import styles from '../../styles/Home.module.css';
-import { Todos_Insert_Input } from '../../graphql/graphql';
+import { TodosInsertInput } from '../../graphql/graphql';
 
 import Layout from '../../components/Layout';
 import { DeleteIcon } from '../../components/DeleteIcon';
 import { useUser } from '../../hooks/useUser';
 
-type Form = Pick<Todos_Insert_Input, 'title'>;
+type Form = Pick<TodosInsertInput, 'title'>;
 
 const title = 'ユーザー詳細ページ';
 const UserShowPage = () => {

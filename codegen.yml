@@ -1,14 +1,33 @@
 overwrite: true
-schema: "http://localhost:8080/v1/graphql"
-documents: "graphql/**/*.graphql"
+schema: 'http://localhost:8080/v1/graphql'
+documents: 'graphql/**/*.graphql'
 generates:
-  graphql/graphql.ts:
+  ./graphql/graphql.ts:
     plugins:
-      - "typescript"
-      - "typescript-operations"
-      - typescript-react-query
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-query'
     config:
       fetcher: graphql-request
+      withComponent: false
+      withHOC: false
+      withHooks: true
+      withRefetchFn: true
+      namingConvention:
+        typeNames: change-case-all#pascalCase
+        transformUnderscore: true
+  ./graphql/mock.ts:
+    plugins:
+      - typescript-mock-data:
+          typesFile: './graphql.ts'
+          addTypename: true
+          # enumValues: pascal-case#pascalCase
+          typename: keep
+          prefix: mock
+          scalars:
+            BaseDateTime:
+              generator: date
+              arguments: 'YYYY-MM-DD'
   ./graphql.schema.json:
     plugins:
-      - "introspection"
+      - 'introspection'

@@ -39,3 +39,4 @@ yarn-error.log*
 # codegen
 /graphql/node_modules
 /graphql/graphql.ts
+/graphql/mock.ts
